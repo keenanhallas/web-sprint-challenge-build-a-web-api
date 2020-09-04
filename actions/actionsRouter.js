@@ -27,9 +27,10 @@ router.get("/:id", (req, res) => {
 });
 
 //Post an action
-//is it better to somehow get the project id from the url?
-router.post("/", validateProjectId, (req, res) => {
-    actionsDb.insert(req.body)
+router.post("/", (req, res) => {
+    const action = req.body;
+    action.project_id = req.project_id;
+    actionsDb.insert(action)
         .then(response => {
             res.status(201).json(response);
         })
@@ -60,21 +61,21 @@ router.delete("/:id", (req, res) => {
         });
 });
 
-function validateProjectId(req, res, next) {
-    console.log(req.body.project_id);
-    projectsDb.get(req.body.project_id)
-    .then(response => {
-        console.log(response);
-        if(response) {
-            req.project_id = response.id;
-            next();
-        } else {
-            res.status(404).json({ message: "Project not found" });
-        }
-    })
-    .catch(err => {
-        console.log(err);
-    });
-}
+// function validateProjectId(req, res, next) {
+//     console.log(req.body.project_id);
+//     projectsDb.get(req.body.project_id)
+//     .then(response => {
+//         console.log(response);
+//         if(response) {
+//             req.project_id = response.id;
+//             next();
+//         } else {
+//             res.status(404).json({ message: "Project not found" });
+//         }
+//     })
+//     .catch(err => {
+//         console.log(err);
+//     });
+// }
 
 module.exports = router;

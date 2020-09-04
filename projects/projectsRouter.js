@@ -60,14 +60,21 @@ router.delete("/:id", (req, res) => {
         });
 });
 
-router.use("/:id/actions", actionRoutes);
+router.use("/:id/actions", validateProjectId, actionRoutes);
 
-// function validateProjectId(req, res, next) {
-//     if (req.params.id) {
-//         projectsDb.get(req.params.id)
-//     } else {
-//         next();
-//     }
-// }
+function validateProjectId(req, res, next) {
+    projectsDb.get(req.params.id)
+    .then(response => {
+        if(response) {
+            req.project_id = req.params.id;
+            next();
+        } else {
+            res.status(404).json({ message: "Project not found" });
+        }
+    })
+    .catch(err => {
+        console.log(err);
+    });
+}
 
 module.exports = router;
