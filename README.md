@@ -61,10 +61,30 @@ Commit your code regularly and meaningfully. This helps both you (in case you ev
 Be prepared to demonstrate your understanding of this week's concepts by answering questions on the following topics. You might prepare by writing down your own answers before hand.
 
 1. The core features of Node.js and Express and why they are useful.
+
+Node.js is a JS runtime environment that lets you run JS outside of the browser. Express is a framework that runs on top of Node.js and makes setting up servers easier & more powerful, by, for example, allowing for routing.
+
 1. Understand and explain the use of Middleware?
+
+Middleware can be inserted anywhere in the chain of server routes to add new functionality that leads to more robust servers.
+
 1. The basic principles of the REST architectural style.
+
+Representational State Transfer, a suggested standard for communication across the web:
+1. Client to server interaction & separation
+2. Stateless
+3. Cacheable
+4. Uniform interface between components
+5. Layered system
+6. Code on demand
+
 1. Understand and explain the use of Express Routers.
+
+Express routes allow you to direct the normal flow through the server in more performative ways by having different routs handling specific URLs & requests
+
 1. Describe tooling used to manually test the correctness of an API.
+
+You can use something like Postman or Insomnia to send the exact requests you want, with a body, headers, or anything else that's needed, to test specifc endpoint individually.
 
 You are expected to be able to answer questions in these areas. Your responses contribute to your Sprint Challenge grade.
 
@@ -91,7 +111,7 @@ Your finished project must include all of the following requirements:
 
 #### Build an API
 
-- [ ] Design and build endpoints for performing CRUD operations on _projects_ and _actions_. When adding an action, make sure the `project_id` provided belongs to an existing `project`. If you try to add an action with an `id` of 3 and there is no project with that `id` the database will return an error.
+- [x] Design and build endpoints for performing CRUD operations on _projects_ and _actions_. When adding an action, make sure the `project_id` provided belongs to an existing `project`. If you try to add an action with an `id` of 3 and there is no project with that `id` the database will return an error.
 - [x] Add an endpoint for retrieving the list of actions for a project.
 - [x] Use an HTTP client like `postman` or `insomnia` to test the API's endpoints.
 - [x] Use Express Routers to organize the API's code.
@@ -102,7 +122,7 @@ In your solution, it is essential that you follow best practices and produce cle
 
 After finishing your required elements, you can push your work further. These goals may or may not be things you have learned in this module but they build on the material you just studied. Time allowing, stretch your limits and see if you can deliver on the following optional goals:
 
-- [ ] Deploy the API to Heroku.
+- [x] Deploy the API to Heroku.
 - [ ] Configure the API to support environment variables.
 - [ ] Use middleware for validation of incoming data.
 
