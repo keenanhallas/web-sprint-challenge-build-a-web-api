@@ -62,4 +62,12 @@ router.delete("/:id", (req, res) => {
 
 router.use("/:id/actions", actionRoutes);
 
+// function validateProjectId(req, res, next) {
+//     if (req.params.id) {
+//         projectsDb.get(req.params.id)
+//     } else {
+//         next();
+//     }
+// }
+
 module.exports = router;

@@ -1,5 +1,6 @@
 const express = require("express");
 const actionsDb = require("../data/helpers/actionModel");
+const projectsDb = require("../data/helpers/projectModel");
 
 const router = express.Router();
 
@@ -27,7 +28,7 @@ router.get("/:id", (req, res) => {
 
 //Post an action
 //is it better to somehow get the project id from the url?
-router.post("/", (req, res) => {
+router.post("/", validateProjectId, (req, res) => {
     actionsDb.insert(req.body)
         .then(response => {
             res.status(201).json(response);
@@ -58,5 +59,22 @@ router.delete("/:id", (req, res) => {
             console.log(err);
         });
 });
+
+function validateProjectId(req, res, next) {
+    console.log(req.body.project_id);
+    projectsDb.get(req.body.project_id)
+    .then(response => {
+        console.log(response);
+        if(response) {
+            req.project_id = response.id;
+            next();
+        } else {
+            res.status(404).json({ message: "Project not found" });
+        }
+    })
+    .catch(err => {
+        console.log(err);
+    });
+}
 
 module.exports = router;
