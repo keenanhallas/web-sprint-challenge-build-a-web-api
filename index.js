@@ -18,7 +18,6 @@ const helmet = require("helmet");
 
 //import routes here
 const projectRoutes = require("./projects/projectsRouter");
-//const actionRoutes = require("./actions/actionsRouter");
 
 const server = express();
 
@@ -30,7 +29,6 @@ server.get("/", (req, res) => {
 });
 
 server.use("/projects", projectRoutes);
-//server.use("/actions", actionRoutes);
 
 const port = process.env.PORT || 3334;
 
