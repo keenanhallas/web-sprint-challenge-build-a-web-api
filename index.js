@@ -17,7 +17,8 @@ const express = require("express");
 const helmet = require("helmet");
 
 //import routes here
-//const postsRoutes = require("./posts/postsRoutes"); <- template
+const projectRoutes = require("./projects/projectsRouter");
+//const actionRoutes = require("./actions/actionsRouter");
 
 const server = express();
 
@@ -27,6 +28,9 @@ server.use(express.json());
 server.get("/", (req, res) => {
     res.status(200).send("<h1>Hello world!</h1>");
 });
+
+server.use("/projects", projectRoutes);
+//server.use("/actions", actionRoutes);
 
 const port = process.env.PORT || 3334;
 
