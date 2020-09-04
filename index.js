@@ -12,3 +12,25 @@ I need this code, but don't know where, perhaps should make some middleware, don
 
 Go code!
 */
+
+const express = require("express");
+const helmet = require("helmet");
+
+//import routes here
+//const postsRoutes = require("./posts/postsRoutes"); <- template
+
+const server = express();
+
+server.use(helmet());
+server.use(express.json());
+
+server.get("/", (req, res) => {
+    res.status(200).send("<h1>Hello world!</h1>");
+});
+
+const port = process.env.PORT || 3334;
+
+server.listen(port, () => {
+    console.log("server up...");
+});
+
